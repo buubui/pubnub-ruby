@@ -21,11 +21,13 @@ module Pubnub
       write = [0, '0', false].include?(@write) ? 1 : 0
       read = [0, '0', false].include?(@read) ? 1 : 0
       manage = [0, '0', false].include?(@manage) ? 1 : 0 unless @group.blank?
+      delete = [0, '0', false].include?(@delete) ? 1 : 0
 
       { timestamp: @timestamp,
         w: write,
         r: read,
         m: manage,
+        d: delete,
         ttl: @ttl }.delete_if { |_k, v| v.nil? }.merge(super(signature))
     end
 
